@@ -1,8 +1,10 @@
 
 :root {
-  --primary: #00A6BF;
-  --primary-light: #1AC0D9;
+  --primary: hsla(10, 75%, 48%, 1);
+  --primary-light: hsla(10, 75%, 58%, 1);
   --primary-bg: #fff;
+  --secondary: hsla(46, 100%, 34%, 1);
+  --secondary-bg: #FED941;
 }
 /**
  * Based off of White theme for reveal.js By Hakim El Hattab, http://hakim.se
@@ -394,4 +396,12 @@ table.fixed-two-column td {
 #dev-tool {
   display: inline-block;
   margin: 20px;
+}
+
+li.no-bullet {
+  list-style: none;
+}
+
+.dark-highlighter {
+  background: linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.7));
 }
