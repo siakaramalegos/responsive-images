@@ -1,50 +1,10 @@
-# Reveal-md Starter
+# Responsive Images for the Web
 
-This starter uses [reveal-md](https://github.com/webpro/reveal-md) to bootstrap a slides repo with custom styling and fonts (to successfully present when offline), and the ability to deploy to Github pages.
-
-A few sample slides are included. The default slide separator is `---`. For vertical transition slides, use `-v-`.
-
-The custom slide theme css and the highlight theme are indicated in the top of the `index.md` file as YAML front matter.
-
-The custom stylesheet is `style.css` - I started with the White theme for reveal.js by [Hakim El Hattab](http://hakim.se), and edited for my own purposes from there. The footer Twitter handle is set there. Custom fonts are in the `/fonts/` folder, to be able to successfully run the slides when offline.
-
-## Usage
-
-### Installation
-
-To use this starter, you must have both [reveal-md](https://github.com/webpro/reveal-md) and [gh-pages](https://github.com/tschaub/gh-pages) installed locally. These are not installed via the project because they are too large to install in every individual project.
-
-```
-$ npm install reveal-md gh-pages -g
-```
-
-### Scripts
-
-To **run** the slides locally, watching for changes in style or content:
-
-```
-$ npm start
-```
-
-To create a **build** in the `/build/` folder:
-
-```
-$ npm run build
-```
-
-To **deploy** the `/build/` folder to Github pages:
-
-```
-$ npm run deploy
-```
-
-To **export to pdf** to `slides.pdf` in 1024x768 resolution, run ([more info](https://github.com/webpro/reveal-md#print-to-pdf)):
-
-```
-$ npm run print
-```
+Images account for 50% of the bytes downloaded to load a website. How can you make sure that your users only download the smallest image necessary while preserving image quality? In this talk, we'll focus on the underlying concepts in HTML and CSS for serving responsive images, which you can take with you no matter which tool you use.Which file formats suit which image types best? How can you use art direction in images to show the best image for a viewport layout? Come learn about this and more!
 
 ## Slides and Controls
+
+The slides are deployed at https://projects.sia.codes/responsive-images-2020/#/.
 
 To advance the slides, use `n` for next and `p` for previous. The right arrow jumps to the next section (and left for previous section). Up and down to advance through slides within a section.
 

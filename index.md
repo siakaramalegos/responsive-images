@@ -18,8 +18,7 @@ highlightTheme: github
 
 ---
 
-<!-- TODO: change this -->
-## [bit.ly/perf-90](http://bit.ly/perf-90)
+## [bit.ly/web-images-2020](http://bit.ly/web-images-2020)
 
 ---
 
@@ -47,11 +46,15 @@ Images account for 50% of the bytes transferred <br>(median) needed to load a we
 
 ---
 
-<large style="font-size: 48px">Users shouldn't download<br> unnecessary bytes.</large>
+<large style="font-size: 48px">Users shouldn't download<br> unnecessary bytes. 💾</large>
 
 ---
 
 <large style="font-size: 48px">Images should look good. 💅🏼</large>
+
+---
+
+<large style="font-size: 48px">Stop the layout shift. ✋🏽</large>
 
 ---
 
@@ -197,12 +200,6 @@ Note: n this exaggerated example, the natural width of the bantha doggo on the l
 
 ## `srcset`
 
-- Communicates a set of images and the natural size of each image
-- Always include a **base src** attribute for older browsers
-- Browser assumes a display width of `100vw`
-
-**`srcset` files are candidates, not commands.**
-
 ```html
 <img srcset="https://placekitten.com/300/200 300w,
              https://placekitten.com/600/400 600w"
@@ -210,16 +207,16 @@ Note: n this exaggerated example, the natural width of the bantha doggo on the l
      alt="cute random kitten" />
 ```
 
+- States a set of images and the natural size of each image <!-- .element: class="fragment fade-in-then-semi-out" -->
+- Browser assumes a display width of 100vw <!-- .element: class="fragment fade-in-then-semi-out" -->
+- Files are candidates, not commands. <!-- .element: class="fragment fade-in-then-semi-out" -->
+
+
 Note: `srcset` is an attribute for `<img>`. Width is in pixels even though is says `w`. Format is filename, space, actual image width in pixels. Alternatively, use x-descriptors.
 
 ---
 
 ## `sizes`
-
-- Communicates display width for a set of media conditions
-- **Order matters! First match is used.**
-- Leave out the media condition for the last one (default for no match)
-- Add analogous CSS
 
 ```html
 <img src="https://placekitten.com/300/200"
@@ -232,7 +229,21 @@ Note: `srcset` is an attribute for `<img>`. Width is in pixels even though is sa
   alt="cute random kitten" />
 ```
 
+- States display width for a set of media conditions <!-- .element: class="fragment fade-in-then-semi-out" -->
+- Order matters! First match is used. <!-- .element: class="fragment fade-in-then-semi-out" -->
+- No media condition for the last one (default for no match) <!-- .element: class="fragment fade-in-then-semi-out" -->
+- Add analogous CSS <!-- .element: class="fragment fade-in-then-semi-out" -->
+
+
 Note: Format is [media condition][space][display width]. Once again, these are candidates, not commands. We are letting the browser choose which file to use ultimately.
+
+---
+
+## RespImageLint FTW 🏆
+
+<img src="./images/respimagelint.png" alt="RespImageLint screenshot showing suggested sizes for an image" style="border:none;">
+
+<small>[RespImageLint bookmarklet](https://ausi.github.io/respimagelint/)</small>
 
 ---
 
@@ -256,7 +267,7 @@ Note: How many different resolutions? Science suggests humans can see 720ppi 1 f
 
 ---
 
-<img src="./images/art-direction.png" alt="examples of the same image on multiple devices" style="border:none;box-shadow:none;">
+<img src="./images/art-direction.png" alt="examples of the same image on multiple devices" class="plain">
 
 Note: (1) Art direction is a technique for drawing attention to the most important parts, or targeting specific features of an image, even when it’s viewed on different devices or platforms. (2) So how do we do art direction?
 
@@ -264,9 +275,7 @@ Note: (1) Art direction is a technique for drawing attention to the most importa
 
 ## `<picture>`
 
-- Provide multiple images based on device size, resolution, orientation, and more.
-- Use `media` attribute for viewport spec. First match is used.
-- Always provide `<img>` last for no match or browsers that do not support `<picture>` and `<source>`
+Provides image candidates based on device size, resolution, orientation, and more.
 
 ```html
 <picture>
@@ -281,15 +290,14 @@ Note: (1) Art direction is a technique for drawing attention to the most importa
 </picture>
 ```
 
-Note: (1) In this `picture` tag, we have 2 sources and an img. Older browsers simply ignore the picture and source tags and use the img tag. (2) The video tag also works this way and can have multiple `source` tags
+Note: Use `media` attribute for viewport spec. First match is used. Always provide `<img>` last for no match or browsers that do not support `<picture>` and `<source>` (1) In this `picture` tag, we have 2 sources and an img. Older browsers simply ignore the picture and source tags and use the img tag. (2) The video tag also works this way and can have multiple `source` tags
 
 ---
 
-## Bleeding-Edge File Formats
+## Bleeding-Edge File Formats (WEBP!)
 
-- Use `<picture>` for new file formats like `webp`!
-- The browser uses the first compatible file type listed.
-- The `<img>` source should be a fallback file format for browsers that don't support the previous formats listed.
+- Browser uses the first compatible file type.
+- Set `<img>` `src` to a format supported by all browsers.
 
 ```html
 <picture>
@@ -301,7 +309,25 @@ Note: (1) In this `picture` tag, we have 2 sources and an img. Older browsers si
 
 ---
 
-## `webp`, `srcset`, &amp; `sizes`, oh my!
+## CSS Background Images
+
+- Use media queries for width and DPR
+- Use postcss/autoprefixer to get prefixes
+
+```css
+@media only screen and (min-width: 320px) {
+  /* small screen, DPR = 1 */ }
+@media only screen and (min-device-pixel-ratio: 2) and (min-width: 320px),
+  only screen and (min-resolution: 192dpi) and (min-width: 320px),
+  only screen and (min-resolution: 2dppx) and (min-width: 320px),{
+  /* small screen, DPR = 2 */ }
+```
+
+Note: When should an image be in the HTML vs CSS?
+
+---
+
+## webp, srcset, &amp; sizes, oh my! 🦁🐯🐻
 
 ```html
 <picture>
@@ -316,22 +342,6 @@ Note: (1) In this `picture` tag, we have 2 sources and an img. Older browsers si
         alt="pug on a sofa looking sad" />
 </picture>
 ```
-
----
-
-## CSS Background Image Performance
-
-- Use media queries to select the best width image for a chosen screen size and DPR
-- Use postcss/autoprefixer to get prefixes
-
-  ```css
-  @media only screen and (min-width: 320px) {
-    /* small screen, DPR = 1 */ }
-  @media only screen and (min-device-pixel-ratio: 2) and (min-width: 320px),
-    only screen and (min-resolution: 192dpi) and (min-width: 320px),
-    only screen and (min-resolution: 2dppx) and (min-width: 320px),{
-    /* small screen, DPR = 2 */ }
-  ```
 
 ---
 
@@ -353,14 +363,21 @@ Note: (1) In this `picture` tag, we have 2 sources and an img. Older browsers si
 - [Netlify large media](https://docs.netlify.com/large-media/overview/#large-media-docs)
 - ...and many others
 
-<small>[Image Analysis Tool by Cloudinary](https://webspeedtest.cloudinary.com/)</small>
+```bash
+[baseUrl]/eeeps/image/upload/f_auto,q_70,w_512/photo.jpg
+/images/apples.jpg?nf_resize=fit&w=300&h=400
+```
+
+<small>[Image Analysis Tool by Cloudinary](https://webspeedtest.cloudinary.com/)*</small>
 
 ---
 
 ## Other tooling options:
 
 - Simple `<img>` and server/serverless function selects best image to serve
-- Build tools like various webpack loaders
+- Build tools like various webpack loaders (but `sizes` not supported)
+  - [responsive-loader](https://github.com/herrstucki/responsive-loader)
+  - [gatsby-image](https://www.gatsbyjs.org/packages/gatsby-image/) and [gatsby-transformer-sharp](https://image-processing.gatsbyjs.org/)
 
 
 Note: (1) Many people have their server hijack the request and serve the best image to minimize markup. Could also use a serverless function. (2) Cost money. (3) So many options - both create your srcset code and process the images
@@ -371,6 +388,46 @@ Note: (1) Many people have their server hijack the request and serve the best im
 # not a perf strategy.
 
 Note: Some browsers will still load hidden images.
+
+---
+
+<!-- .slide: data-background="./images/falling-mountains.jpg" class="dark-highlighter" -->
+
+# Layout Shift
+
+---
+
+<video controls width="800" autoplay loop>
+  <source src="./images/layout-shift.mp4" type="video/mp4">
+  Sorry, your browser doesn't support embedded videos.
+</video>
+
+---
+
+```html
+<img src="/img/show-money/show-money.jpg"
+     alt="Man's hand holding out a fist full of dollars toward the viewer"
+     height="383px"
+     width="680px">
+```
+
+```css
+img {
+  height: auto;
+  /* max-width: 100%; */
+}
+```
+
+<small>[Do This to Improve Image Loading on Your Website](https://www.youtube.com/watch?v=4-d_SoCHeWE&feature=youtu.be) - video by Jen Simmons</small>
+
+Note: Setting the height and width on the image sets an aspect ratio, and then the CSS is respected.
+
+---
+
+<video controls width="800" autoplay loop>
+  <source src="./images/fixed-layout-shift.mp4" type="video/mp4">
+  Sorry, your browser doesn't support embedded videos.
+</video>
 
 ---
 
@@ -408,6 +465,10 @@ Note: Some browsers will still load hidden images.
 
 In the meantime, use a tool like [lazysizes](https://github.com/aFarkas/lazysizes).
 
+<small>Also check out: [Lazy load embedded YouTube videos](https://css-tricks.com/lazy-load-embedded-youtube-videos/) on CSS Tricks</small>
+
+Note: Can also do a blur-up and calculate sizes for you.
+
 ---
 
 ## Toolbox
@@ -430,7 +491,11 @@ In the meantime, use a tool like [lazysizes](https://github.com/aFarkas/lazysize
 <!-- .slide: data-background="./images/yellow-camera.jpg" -->
 <h1 class="title" style="text-align:left;">Thanks!</h1>
 
-<p style="color:#333;text-align:left;">Slides, resources, and more<br> at <a href="https://bit.ly/siaspeaks" class="dark-background">bit.ly/siaspeaks</a></p>
+<p style="color:#333;text-align:left;">Slides:<br> <a href="http://bit.ly/web-images-2020" class="dark-background">bit.ly/web-images-2020</a></p>
+<p style="color:#333;text-align:left;">30 Days of Web Perf:<br> <a href="http://bit.ly/30-days-web-perf" class="dark-background">bit.ly/30-days-web-perf</a></p>
+<p style="color:#333;text-align:left;">Writing, resources, and more:<br> <a href="https://sia.codes/" class="dark-background">sia.codes</a></p>
+
+
 
 ---
 
