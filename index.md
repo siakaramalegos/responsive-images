@@ -2,6 +2,8 @@
 theme: style.css
 verticalSeparator: -v-
 highlightTheme: github
+revealOptions:
+  transition: none
 ---
 
 <!-- .slide: data-background="./images/yellow-camera.jpg" -->
@@ -12,9 +14,9 @@ highlightTheme: github
 
 ## hi, i'm sia
 
-⚡ 👩🏻‍💻 🇬🇷 🐶 🐺 🎨 📓 ✈️
+[sia.codes](https://sia.codes/)
 
-<img src="./images/sia.gif" alt="Sia at Mardi Gras" height="450px" style="border:none;">
+<img src="./images/champagne_sia.jpg" alt="Sia dressed up as a champagne bottle at Mardi Gras" height="450px" style="border:none;">
 
 ---
 
@@ -58,7 +60,7 @@ Images account for 50% of the bytes transferred <br>(median) needed to load a we
 
 ---
 
-## Responsive &amp; Optimized Toolbox
+## Responsive &amp; Optimized Toolbox 🧰
 
 - Best file format <!-- .element: class="fragment fade-in-then-semi-out" -->
 - Right size and resolution <!-- .element: class="fragment fade-in-then-semi-out" -->
@@ -471,11 +473,11 @@ Note: Can also do a blur-up and calculate sizes for you.
 
 ---
 
-## Toolbox
+## Toolbox 🧰
 
 - Use the right image type (png vs jpg, gif vs video). <!-- .element: class="fragment fade-in-then-semi-out" -->
 - Serve the right size image for the user's screen width and device pixel ratio <!-- .element: class="fragment fade-in-then-semi-out" -->
-- Compress images with a tool like ImageOptim, or use a webpack plugin like imagemin-webpack-plugin <!-- .element: class="fragment fade-in-then-semi-out" -->
+- Compress images with a tool like ImageOptim, TinyPNG, or use a webpack plugin like imagemin-webpack-plugin <!-- .element: class="fragment fade-in-then-semi-out" -->
 - Use newer, improved formats like webp. <!-- .element: class="fragment fade-in-then-semi-out" -->
 - Lazy loading with a tool like lazysizes <!-- .element: class="fragment fade-in-then-semi-out" -->
 
