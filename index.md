@@ -20,19 +20,21 @@ revealOptions:
 
 ---
 
+<!-- TODO -->
 ## [bit.ly/web-images-2020](http://bit.ly/web-images-2020)
 
 ---
 
-Images account for 50% of the bytes transferred <br>(median) needed to load a webpage.
 
-<small>[httparchive.org](https://httparchive.org), January 2020</small>
+Images account for 48% of the bytes transferred <br>(median) needed to load a mobile webpage.
+
+<small>[httparchive.org](https://httparchive.org), January 2021</small>
 
 ---
 
 <img src="./images/httparchive-images.png" alt="HTTPArchive chart of image bytes transferred over time" style="border:none">
 
-<small>[httparchive.org](https://httparchive.org), January 2020</small>
+<small>[httparchive.org](https://httparchive.org), January 2021</small>
 
 ---
 
@@ -40,7 +42,7 @@ Images account for 50% of the bytes transferred <br>(median) needed to load a we
 
 <img src="./images/chart.svg" alt="" style="border:none">
 
-<small>[httparchive.org](https://httparchive.org), January 2020</small>
+<small>[httparchive.org](https://httparchive.org), January 2021</small>
 
 ---
 
@@ -161,6 +163,16 @@ Note: WEBP is a new format available on most modern browsers (I'm looking at you
 
 ---
 
+## AVIF: the future
+
+<img class="plain" src="./images/caniuse-avif.png" alt="caniuse page for webp showing no safari support">
+
+<small>[Equal file sizes demo](https://jakearchibald.com/2020/avif-has-landed/#at-equal-file-sizes) by Jake Archibald, [caniuse](https://caniuse.com/avif)</small>
+
+Note: AVIF is an extraction from the keyframes of the now popular video format AV1. Best compression, supports transparency and more.
+
+---
+
 ## Cheatsheet
 
 - ✅ SVG: logos and icons <!-- .element: class="fragment fade-in-then-semi-out no-bullet" -->
@@ -168,6 +180,7 @@ Note: WEBP is a new format available on most modern browsers (I'm looking at you
 - ✅ PNG: photo-like images with transparency <!-- .element: class="fragment fade-in-then-semi-out no-bullet" -->
 - ✅ JPG: photo-like images with no transparency <!-- .element: class="fragment fade-in-then-semi-out no-bullet" -->
 - ✅ WEBP: smaller, but need to serve fallbacks <!-- .element: class="fragment fade-in-then-semi-out no-bullet" -->
+- ✅ AVIF: EVEN SMALLER, but need to serve fallbacks <!-- .element: class="fragment fade-in-then-semi-out no-bullet" -->
 
 <small>[Responsive Doggos Demo](https://projects.sia.codes/responsive-images-demo/)</small>
 
@@ -209,12 +222,8 @@ Note: n this exaggerated example, the natural width of the bantha doggo on the l
      alt="cute random kitten" />
 ```
 
-- States a set of images and the natural size of each image <!-- .element: class="fragment fade-in-then-semi-out" -->
-- Browser assumes a display width of 100vw <!-- .element: class="fragment fade-in-then-semi-out" -->
-- Files are candidates, not commands. <!-- .element: class="fragment fade-in-then-semi-out" -->
 
-
-Note: `srcset` is an attribute for `<img>`. Width is in pixels even though is says `w`. Format is filename, space, actual image width in pixels. Alternatively, use x-descriptors.
+Note: States a set of images and the natural size of each image. Browser assumes a display width of 100vw.  Files are candidates, not commands.. Alternatively, use x-descriptors.
 
 ---
 
@@ -231,13 +240,7 @@ Note: `srcset` is an attribute for `<img>`. Width is in pixels even though is sa
   alt="cute random kitten" />
 ```
 
-- States display width for a set of media conditions <!-- .element: class="fragment fade-in-then-semi-out" -->
-- Order matters! First match is used. <!-- .element: class="fragment fade-in-then-semi-out" -->
-- No media condition for the last one (default for no match) <!-- .element: class="fragment fade-in-then-semi-out" -->
-- Add analogous CSS <!-- .element: class="fragment fade-in-then-semi-out" -->
-
-
-Note: Format is [media condition][space][display width]. Once again, these are candidates, not commands. We are letting the browser choose which file to use ultimately.
+Note: States display width for a set of media conditions. Order matters! First match is used. No media condition for the last one (default for no match). Add analogous CSS.
 
 ---
 
@@ -277,8 +280,6 @@ Note: (1) Art direction is a technique for drawing attention to the most importa
 
 ## `<picture>`
 
-Provides image candidates based on device size, resolution, orientation, and more.
-
 ```html
 <picture>
   <source media="(min-width: 800px)"
@@ -292,22 +293,22 @@ Provides image candidates based on device size, resolution, orientation, and mor
 </picture>
 ```
 
-Note: Use `media` attribute for viewport spec. First match is used. Always provide `<img>` last for no match or browsers that do not support `<picture>` and `<source>` (1) In this `picture` tag, we have 2 sources and an img. Older browsers simply ignore the picture and source tags and use the img tag. (2) The video tag also works this way and can have multiple `source` tags
+Note: Provides image candidates based on device size, resolution, orientation, and more. Use `media` attribute for viewport spec. First match is used. Always provide `<img>` last for no match or browsers that do not support `<picture>` and `<source>` (1) In this `picture` tag, we have 2 sources and an img. Older browsers simply ignore the picture and source tags and use the img tag. (2) The video tag also works this way and can have multiple `source` tags
 
 ---
 
-## Bleeding-Edge File Formats (WEBP!)
-
-- Browser uses the first compatible file type.
-- Set `<img>` `src` to a format supported by all browsers.
+## Bleeding-Edge File Formats (WEBP & AVIF!)
 
 ```html
 <picture>
+  <source type="image/avif" srcset="pug_life.avif">
   <source type="image/webp" srcset="pug_life.webp">
   <img src="pug_life.jpg"
        alt="pug wearing a striped t-shirt like a boss">
 </picture>
 ```
+
+Note: Browser uses the first compatible file type. Set `<img>` `src` to a format supported by all browsers.
 
 ---
 
@@ -333,6 +334,9 @@ Note: When should an image be in the HTML vs CSS?
 
 ```html
 <picture>
+  <source srcset="./images/sofa_pug_400.avif 400w,
+                  ./images/sofa_pug_800.avif 800w"
+          type="image/avif" />
   <source srcset="./images/sofa_pug_400.webp 400w,
                   ./images/sofa_pug_800.webp 800w"
           type="image/webp" />
@@ -374,6 +378,30 @@ Note: When should an image be in the HTML vs CSS?
 
 ---
 
+## Cloudinary + Eleventy
+
+`f_auto` means we can skip the picture tag!
+
+`[baseUrl]/image/upload/f_auto,q_70,w_512/photo.jpg`
+
+```html
+<img src="{% src 'possum_film_director.jpg' %}"
+  srcset="{% srcset 'possum_film_director.jpg' %}"
+  sizes="{% defaultSizes %}"
+  alt="Possum directing a movie"
+  width="2953"
+  height="2178"
+  loading="lazy"
+  class="super-great-style-class"
+>
+```
+
+<small>[Eleventy and Cloudinary images](https://sia.codes/posts/eleventy-and-cloudinary-images/)</small>
+
+Note: AVIF is not yet supported
+
+---
+
 ## Other tooling options:
 
 - Simple `<img>` and server/serverless function selects best image to serve
@@ -409,8 +437,8 @@ Note: Some browsers will still load hidden images.
 ```html
 <img src="/img/show-money/show-money.jpg"
      alt="Man's hand holding out a fist full of dollars toward the viewer"
-     height="383px"
-     width="680px">
+     height="383"
+     width="680">
 ```
 
 ```css
@@ -493,9 +521,9 @@ Note: Can also do a blur-up and calculate sizes for you.
 <!-- .slide: data-background="./images/yellow-camera.jpg" -->
 <h1 class="title" style="text-align:left;">Thanks!</h1>
 
-<p style="color:#333;text-align:left;">Slides:<br> <a href="http://bit.ly/web-images-2020" class="dark-background">bit.ly/web-images-2020</a></p>
-<p style="color:#333;text-align:left;">30 Days of Web Perf:<br> <a href="http://bit.ly/30-days-web-perf" class="dark-background">bit.ly/30-days-web-perf</a></p>
-<p style="color:#333;text-align:left;">Writing, resources, and more:<br> <a href="https://sia.codes/" class="dark-background">sia.codes</a></p>
+<p style="color:#333;text-align:left;">Slides:<br> <a href="http://bit.ly/web-images-2020" class="link-secondary">bit.ly/web-images-2020</a></p>
+<p style="color:#333;text-align:left;">30 Days of Web Perf:<br> <a href="http://bit.ly/30-days-web-perf" class="link-secondary">bit.ly/30-days-web-perf</a></p>
+<p style="color:#333;text-align:left;">Writing, resources, and more:<br> <a href="https://sia.codes/" class="link-secondary">sia.codes</a></p>
 
 
 
