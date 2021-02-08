@@ -4,7 +4,7 @@ Images account for 50% of the bytes downloaded to load a website. How can you ma
 
 ## Slides and Controls
 
-The slides are deployed at https://projects.sia.codes/responsive-images-2020/#/.
+The slides are deployed at https://projects.sia.codes/responsive-images/#/.
 
 To advance the slides, use `n` for next and `p` for previous. The right arrow jumps to the next section (and left for previous section). Up and down to advance through slides within a section.
 

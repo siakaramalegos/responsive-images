@@ -20,8 +20,7 @@ revealOptions:
 
 ---
 
-<!-- TODO -->
-## [bit.ly/web-images-2020](http://bit.ly/web-images-2020)
+## [projects.sia.codes/responsive-images/](https://projects.sia.codes/responsive-images/)
 
 ---
 
@@ -521,7 +520,7 @@ Note: Can also do a blur-up and calculate sizes for you.
 <!-- .slide: data-background="./images/yellow-camera.jpg" -->
 <h1 class="title" style="text-align:left;">Thanks!</h1>
 
-<p style="color:#333;text-align:left;">Slides:<br> <a href="http://bit.ly/web-images-2020" class="link-secondary">bit.ly/web-images-2020</a></p>
+<p style="color:#333;text-align:left;">Slides:<br> <a href="https://projects.sia.codes/responsive-images/" class="link-secondary">projects.sia.codes/responsive-images/</a></p>
 <p style="color:#333;text-align:left;">30 Days of Web Perf:<br> <a href="http://bit.ly/30-days-web-perf" class="link-secondary">bit.ly/30-days-web-perf</a></p>
 <p style="color:#333;text-align:left;">Writing, resources, and more:<br> <a href="https://sia.codes/" class="link-secondary">sia.codes</a></p>
 
